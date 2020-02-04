@@ -1,5 +1,3 @@
-using System;
-
 namespace SnippetLib.Models
 {
     public class ErrorViewModel
