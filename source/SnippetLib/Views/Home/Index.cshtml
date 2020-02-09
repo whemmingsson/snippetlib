@@ -1,7 +1,21 @@
-﻿@{
+﻿@model IEnumerable<SnippetViewModel>
+@{
     ViewData["Title"] = "New snippet";
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Post a new snippet</h1>
+    <h2 class="display-5">All snippets</h2>
+    <ul>
+        @foreach (var s in Model)
+        {
+            <li>
+                <h3>@s.Snippet.Name</h3>
+                <div><pre><code class="language-cs">@s.SnippetFile</code></pre></div> 
+                <hr />
+            </li>
+        }
+    </ul>
 </div>
+
+

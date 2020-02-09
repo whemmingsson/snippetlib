@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SnippetLib.Business;
 
 namespace SnippetLib
 {
@@ -24,6 +25,12 @@ namespace SnippetLib
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Add the whole configuration object here.
+            services.AddSingleton<IConfiguration>(Configuration);
+
+            services.AddSingleton<ISnippetRepository, SnippetRepository>();
+            services.AddSingleton<ISnippetFileService, SnippetFileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

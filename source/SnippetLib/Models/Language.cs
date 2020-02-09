@@ -2,6 +2,6 @@
 {
     public enum Language
     {
-        CSharp, JavaScript, Java, Html, Css
+        CSharp = 0, JavaScript, Java, Html, Css
     }
 }
