@@ -1,7 +1,40 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model SnippetForm
+@{
+    ViewData["Title"] = "Create";
+    //Html.EnableClientValidation(true);
 }
 
 <div class="text-center">
     <h1 class="display-4">Post a new snippet</h1>
 </div>
+
+@using (Html.BeginForm("Index", "Home"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = 3 })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Snippet)
+        @Html.TextAreaFor(m => m.Snippet, new { @class = "form-control", @rows = 10 })
+        @Html.ValidationMessageFor(m => m.Snippet)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Language)
+        @Html.DropDownListFor(m => m.Language, Model.Languages, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Language)
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="submit" class="btn btn-primary" />
+    </div>
+}
+

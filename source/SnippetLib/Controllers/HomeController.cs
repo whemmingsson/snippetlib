@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SnippetLib.Business;
 using SnippetLib.Models;
+using SnippetLib.Models.ViewModels;
 
 namespace SnippetLib.Controllers
 {
@@ -32,9 +33,9 @@ namespace SnippetLib.Controllers
             }));
         }
 
-        public IActionResult Create()
+        public IActionResult Create(SnippetForm form)
         {
-            return View();
+            return View(form);
         }
 
         public IActionResult Update()
