@@ -6,9 +6,10 @@
 
 <div class="text-center">
     <h1 class="display-4">Post a new snippet</h1>
+    <p>You can either copy &Aacute; paste your snippet, or upload an entire file</p>
 </div>
 
-@using (Html.BeginForm("Index", "Home"))
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new {enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Name)
@@ -28,6 +29,11 @@
     </div>
 
     <div class="form-group">
+        <label for="file">Snippet file</label>
+        <input type="file" name="SnippetFile" />
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(m => m.Language)
         @Html.DropDownListFor(m => m.Language, Model.Languages, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Language)
@@ -36,5 +42,15 @@
     <div class="form-group">
         <input type="submit" value="submit" class="btn btn-primary" />
     </div>
+
+    <style>
+        .field-validation-valid {
+            display: none;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
 }
 

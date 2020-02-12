@@ -1,8 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SnippetLib.Business;
+using SnippetLib.Business.Extensions;
 using SnippetLib.Models;
 using SnippetLib.Models.ViewModels;
 
@@ -35,6 +39,23 @@ namespace SnippetLib.Controllers
 
         public IActionResult Create(SnippetForm form)
         {
+            return View(form);
+        }
+
+        [HttpPost]
+        public IActionResult Create(SnippetForm form, IFormFile SnippetFile)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(form);
+            }
+
+            if(SnippetFile != null && string.IsNullOrWhiteSpace(form.Snippet))
+            {
+                form.Snippet = SnippetFile.ReadString();
+
+            }
+
             return View(form);
         }
 
